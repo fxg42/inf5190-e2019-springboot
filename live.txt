@@ -1,0 +1,57 @@
+Lister les livres
+GET /livres
+
+Un livre en particulier
+GET /livre/123-123-123
+GET /livre/isbn/{isbn}     #isbn est une "clé métier"
+GET /livre/{id}       #id est une clé primaire générée par la bd
+
+DELETE /livre/123-123-123
+DELETE /livre/isbn/{isbn}     #isbn est une "clé métier"
+DELETE /livre/{id}       #id est une clé primaire générée par la bd
+
+POST /livres
+{ isbn: "123-123-123", "titre": "asdasdasd" }
+
+201 Created
+Location: /livre/{id}
+
+POST /livres/lot
+[{ isbn: "123-123-123", "titre": "asdasdasd" }, { isbn: "123-123-456", "titre": "asdasdasd" }] 
+
+PUT /livre/isbn/123-123-123
+{ isbn: "123-123-123", "FOO": "asdasdasd" }
+
+400 BadRequest
+201 Created
+
+GET /livre/isbn/{isbn}/copies-disponibles
+
+bool emprunter(Copie c)
+
+PUT /emprunt/{isbn du livre emprunté}
+{ user: "moi", ........}
+
+POST /emprunts
+=> { dateRetour: "", user:"", copies:[ 9, 8, 7 ] }
+<= 201
+Location: /emprunt/{idEmprunt}
+
+GET /emprunt/{idEmprunt}
+
+PUT /emprunt/{idEmprunt}
+=> { dateRetour: "", user:"", copies:[ 9, 8, 7, 6, 5, 4 ] }
+
+GET /emprunts/retard
+
+GET /copies/isbn/{isbn}
+GET /livre/isbn/{isbn}/copies
+
+PUT /emprunt/{idEmprunt}/retour
+DELETE /emprunt/{idEmprunt}
+
+GET /livre/isbn/{isbn}/reservations
+
+GET /livres?anneeParution=1995&auteurs=asdkjhasd
+
+GET /recherche

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/public/vendor/semantic/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="/public/vendor/semantic/semantic.min.js"></script>
+</head>
+<body>
+  <div class="ui container" style="margin-top:6em;">
+    <div>
+      <h1 class="ui header"><span th:text="${count}"/> BOOKS!</h1>
+      <table class="ui purple striped table">
+        <thead>
+          <tr>
+            <th class="two wide">ISBN</th>
+            <th>Titre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="b : ${books}">
+            <td th:text="${b.isbn}"></td>
+            <td th:text="${b.title}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
+
+

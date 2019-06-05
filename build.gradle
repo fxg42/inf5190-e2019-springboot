@@ -1,0 +1,46 @@
+plugins {
+  // compilation and runtime
+  id 'java'
+  id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+  id 'com.diffplug.gradle.spotless' version '3.23.0'
+}
+
+repositories {
+  mavenCentral()
+}
+ 
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
+
+bootRun {
+  sourceResources(sourceSets.main)
+  systemProperties = System.properties
+}
+
+spotless {
+  java {
+    importOrder('java', 'javax', 'lombok', 'org', 'com', 'ca', '')
+    removeUnusedImports()
+    trimTrailingWhitespace()
+  }
+}
+
+dependencies {
+  // web development
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+  // persistence
+  compile('org.springframework.boot:spring-boot-starter-data-jdbc')
+  compile('org.postgresql:postgresql:42.2.1')
+
+  // language extensions
+  compileOnly('org.projectlombok:lombok:1.18.8')
+  annotationProcessor('org.projectlombok:lombok:1.18.8')
+
+  // development tools
+  compile('org.springframework.boot:spring-boot-devtools')
+  compile('org.flywaydb:flyway-core:5.2.4')
+}
+
